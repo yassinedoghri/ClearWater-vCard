@@ -32,5 +32,6 @@ TODO :
 
 ### Liste des contributeurs
 M. Tixier (matthieu.tixier@utt.fr)
+Valentin Hachet (valentin.hachet@utt.fr)
 
 
