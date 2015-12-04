@@ -31,5 +31,54 @@
  *
  */
 
-var test = require('./vCardParser.js');
-console.log(test);
+var colors = require('colors');
+var prettyjson = require('prettyjson');
+
+colors.setTheme({
+    silly: 'rainbow',
+    input: 'grey',
+    verbose: 'cyan',
+    prompt: 'grey',
+    info: 'green',
+    data: 'grey',
+    help: 'cyan',
+    warn: 'yellow',
+    debug: 'blue',
+    error: 'red'
+});
+
+var prettyJsonOptions = {
+  noColor: false
+};
+
+var fs = require('fs');
+var vCardParser = require('./vCardParser.js');
+var Contact = require('./Contact.js');
+var ContactList = require('./ContactList.js');
+
+fs.readFile("test/sample.vcf", 'utf8', function (err, data) {
+    if (err) {
+        return console.log(err);
+    }
+
+    analyzer = new vCardParser(data);
+    analyzer.parseToJSON();
+    var jsonData = analyzer.jsonData;
+
+    var contactList = new ContactList();
+
+    for (var i = 0; i < jsonData.length; i++) {
+        var contact = new Contact();
+        contact.firstName = jsonData[i]['firstName'];
+        contact.lastName = jsonData[i]['lastName'];
+        contact.organisation = jsonData[i]['organisation'];
+        contact.title = jsonData[i]['title'];
+        contact.phone = jsonData[i]['phone'];
+        contact.cellPhone = jsonData[i]['cellPhone'];
+        contact.email = jsonData[i]['email'];
+
+        contactList.addContact(contact);
+    }
+    
+    console.log(prettyjson.render(contactList, prettyJsonOptions));
+});
