@@ -1,3 +1,12 @@
+/**
+ * vCardParser Class
+ * Analyse des données sous la structure vCard
+ * et permet de les reformater en JSON
+ *
+ * @class vCardParser
+ * @param {String} rawData Données vCard brutes
+ * @property {Array} jsonData Tableau contenant les données sous format JSON
+ */
 function vCardParser(rawData) {
     this.rawData = rawData;
     this.fieldAssociations = {

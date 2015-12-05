@@ -6,7 +6,7 @@
  * @class Contact
  * @property {String} firstName Prénom du contact
  * @property {String} lastName Nom du contact
- * @property {Array} organisation(s) Entreprise dans laquelle travaille le contact
+ * @property {Array} organisation Entreprise(s) dans laquelle travaille le contact
  * @property {Array} title Fonction(s) du contact
  * @property {Object} phone Numéro de téléphone fixe (travail ou domicile) du contact
  * @property {String} cellPhone Numéro de téléphone portable du contact
