@@ -16,3 +16,12 @@ TEL;TYPE=work,voice;VALUE=uri:tel:+33144877154
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612447100
 EMAIL:zzidane@fifa.com
 END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+N:Bond;James
+ORG:Mi6
+TITLE:Spy;00 Agent
+TEL;TYPE=work,voice;VALUE=uri:tel:+33100710018
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33600710018
+EMAIL:james.bond@mi6.com
+END:VCARD

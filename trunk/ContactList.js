@@ -1,9 +1,23 @@
+/**
+ * ContactList Class
+ * Définit une liste de contacts où des contacts peuvent être ajoutés ou retirés.
+ * Permet d'effectuer des opérations pour trouver des doublons, des conflits
+ * mais aussi d'exporter la liste dans différents formats (CSV ou vCard).
+ * 
+ * @class ContactList
+ * @property {Array} contacts Tableau contenant les objets Contact
+ */
 var ContactList = function () {
     this.contacts = [];
 };
 
 ContactList.prototype.addContact = function (contact) {
-    this.contacts.push(contact);
+    var Contact = require("./Contact.js");
+    // Tests if contact is an instance of the Contact Class
+    // before adding it to the list
+    if (contact instanceof Contact) {
+        this.contacts.push(contact);
+    }
 };
 
 ContactList.prototype.removeContact = function (contact) {
