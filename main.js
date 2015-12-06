@@ -61,5 +61,14 @@ fs.readFile(file, 'utf8', function (err, data) {
         contactList.addContact(contact);
     }
 
-    console.log(prettyjson.render(contactList, prettyJsonOptions));
+//    console.log(prettyjson.render(contactList, prettyJsonOptions));
+    try {
+        var duplicateContacts = contactList.duplicates();
+        for (var j in duplicateContacts) {
+            console.log(j + "\r\n" + prettyjson.render(duplicateContacts[j], prettyJsonOptions));
+        }
+    } catch (e) {
+        console.log("Error : " + e.message);
+    }
+
 });
