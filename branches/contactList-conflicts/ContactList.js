@@ -11,6 +11,25 @@ var ContactList = function () {
     this.contacts = [];
     this.similarContacts = true;
     this.contactNumber = 0;
+    var firstName, lastName;
+    Object.defineProperties(this, {
+        "firstName": {
+            get: function () {
+                return firstName;
+            },
+            set: function (value) {
+                firstName = value;
+            }
+        },
+        "lastName": {
+            get: function () {
+                return lastName;
+            },
+            set: function (value) {
+                lastName = value;
+            }
+        }
+    });
 };
 
 ContactList.prototype.addContact = function (contact) {
@@ -23,8 +42,13 @@ ContactList.prototype.addContact = function (contact) {
             // to an already filled ContactList (same First and Last Name)
             if (this.contacts[0].firstName !== contact.firstName ||
                     this.contacts[0].lastName !== contact.lastName) {
+                this.firstName = null;
+                this.lastName = null;
                 this.similarContacts = false;
             }
+        } else if (this.contacts.length === 0) {
+            this.firstName = contact.firstName;
+            this.lastName = contact.lastName;
         }
         this.contacts.push(contact);
         this.contactNumber++;
@@ -49,26 +73,80 @@ ContactList.prototype.duplicates = function () {
                 if (!(key in duplicates)) {
                     duplicates[key] = new ContactList();
                     duplicates.similarContacts = true;
+                    duplicates[key].firstName = this.contacts[i].firstName;
+                    duplicates[key].lastName = this.contacts[i].lastName;
                 }
                 duplicates[key].addContact(this.contacts[i]);
             }
             return duplicates;
         } else {
-            throw {name: 'SimilarContacts', message: "La liste de contacts est déjà une liste de profils similaires !"};
+            throw {name: 'SimilarContacts', type: "error", message: "La liste de contacts est déjà une liste de profils similaires !"};
         }
     } else {
-        throw {name: 'ContactNumber', message: "La liste de contacts doit contenir au moins deux contacts !"};
+        throw {name: 'ContactNumber', type: "error", message: "La liste de contacts doit contenir au moins deux contacts !"};
     }
 };
 
-ContactList.prototype.conflicts = function() {
-    // TO DO
+ContactList.prototype.conflicts = function () {
+    if (this.similarContacts) {
+        var conflicts = {};
+        var properties = ["organisation", "title", "phone", "cellPhone", "email"];
+        for (var i = 0; i < this.contactNumber; i++) {
+            for (var j = 0; j < properties.length; j++) {
+                if (!(properties[j] in conflicts)) {
+                    conflicts[properties[j]] = [];
+                }
+                if (this.contacts[i][properties[j]] instanceof Array) {
+                    for (var k in this.contacts[i][properties[j]]) {
+                        conflicts[properties[j]].push(this.contacts[i][properties[j]][k]);
+                    }
+                } else if (properties[j] === "phone") {
+                    var phone = this.contacts[i][properties[j]];
+                    conflicts[properties[j]].push(phone["type"] + ": " + phone["number"]);
+                } else {
+                    conflicts[properties[j]].push(this.contacts[i][properties[j]]);
+                }
+            }
+        }
+        for (var p in conflicts) {
+            conflicts[p] = uniq(conflicts[p]);
+            if (conflicts[p].length < 2) {
+                delete conflicts[p];
+            }
+        }
+
+        return conflicts;
+    } else {
+        throw {name: 'SimilarContacts', type: "error", message: "La liste de contacts doit contenir des profils similaires !"};
+    }
 };
 
 ContactList.prototype.displayConflicts = function () {
-    // TO DO
-    // Affiche les informations différentes pour une liste de contact ayant le
-    // même profil (au moins même nom et prénom)
+    var conflicts = this.conflicts();
+    if (Object.size(conflicts) > 0) {
+        var chalk = require('chalk');
+        var Table = require('cli-table');
+        var table = new Table({
+            head: [chalk.blue('Champ(s)'), chalk.blue('Conflits')]
+        });
+        var title = "Voici la liste des conflits pour " +
+                chalk.blue(this.firstName) + " " + chalk.blue(this.lastName);
+        var ref = {
+            "organisation": "Organisation",
+            "title": "Fonction",
+            "phone": "Téléphone Fixe",
+            "cellPhone": "Téléphone Portable",
+            "email": "Adresse Email"
+        };
+        for (var i in conflicts) {
+            table.push([chalk.bold(ref[i]), conflicts[i].join("\n")]);
+        }
+
+        console.log(title);
+        console.log(table.toString());
+    } else {
+        throw {name: 'NoneToDisplay', type: "info", message: "Aucun conflit n'a été détecté pour " + this.firstName + " " + this.lastName + " !"};
+    }
 };
 
 ContactList.prototype.fusion = function () {
@@ -89,5 +167,29 @@ ContactList.prototype.toString = function () {
     }
     return s;
 };
+
+Object.size = function (obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key))
+            size++;
+    }
+    return size;
+};
+
+function uniq(a) {
+    var seen = {};
+    var out = [];
+    var len = a.length;
+    var j = 0;
+    for (var i = 0; i < len; i++) {
+        var item = a[i];
+        if (seen[item] !== 1) {
+            seen[item] = 1;
+            out[j++] = item;
+        }
+    }
+    return out;
+}
 
 module.exports = ContactList;
