@@ -10,21 +10,8 @@
  * Copyright (C) 2015 Atlantis
  */
 
-var colors = require('colors');
 var prettyjson = require('prettyjson');
-
-colors.setTheme({
-    silly: 'rainbow',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'grey',
-    info: 'green',
-    data: 'grey',
-    help: 'cyan',
-    warn: 'yellow',
-    debug: 'blue',
-    error: 'red'
-});
+var chalk = require('chalk');
 
 var prettyJsonOptions = {
     noColor: false
@@ -35,7 +22,7 @@ var vCardParser = require('./vCardParser.js');
 var Contact = require('./Contact.js');
 var ContactList = require('./ContactList.js');
 
-var file = "test/sample.vcf";
+var file = "test/sample_c.vcf";
 
 fs.readFile(file, 'utf8', function (err, data) {
     if (err) {
@@ -62,13 +49,34 @@ fs.readFile(file, 'utf8', function (err, data) {
     }
 
 //    console.log(prettyjson.render(contactList, prettyJsonOptions));
+//    try {
+//        var duplicateContacts = contactList.duplicates();
+//        console.log(duplicateContacts);
+//        for (var j in duplicateContacts) {
+//            console.log(j + "\r\n" + duplicateContacts[j]);
+//        }
+//    } catch (e) {
+//        handleException(e);
+//    }
+    
+    // Si on a des contacts similaires (à tester avec sample_c.vcf)
     try {
-        var duplicateContacts = contactList.duplicates();
-        for (var j in duplicateContacts) {
-            console.log(j + "\r\n" + prettyjson.render(duplicateContacts[j], prettyJsonOptions));
-        }
+        contactList.displayConflicts();
     } catch (e) {
-        console.log("Error : " + e.message);
+        handleException(e);
     }
-
 });
+
+function handleException(e) {
+    var error = chalk.white.bgRed.bold;
+    var errorMsg = chalk.bold.red;
+        var info = chalk.white.bgBlue.bold;
+    var infoMsg = chalk.bold.blue;
+    if (e.type === "info") {
+        console.log(info(" " + e.type + " ") + " " + infoMsg(e.message));
+    } else {
+        console.log(error(" " + e.type + " ") + " " + errorMsg(e.message));
+        console.log(chalk.gray("Stoping process..."));
+        process.exit();
+    }
+}
