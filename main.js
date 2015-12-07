@@ -12,18 +12,14 @@
 
 var prettyjson = require('prettyjson');
 var chalk = require('chalk');
-
 var prettyJsonOptions = {
     noColor: false
 };
-
 var fs = require('fs');
 var vCardParser = require('./vCardParser.js');
 var Contact = require('./Contact.js');
 var ContactList = require('./ContactList.js');
-
 var file = "test/sample_c.vcf";
-
 fs.readFile(file, 'utf8', function (err, data) {
     if (err) {
         return console.log(err);
@@ -32,20 +28,21 @@ fs.readFile(file, 'utf8', function (err, data) {
     analyzer = new vCardParser(data);
     analyzer.parseToJSON();
     var jsonData = analyzer.jsonData;
-
     var contactList = new ContactList();
-
     for (var i = 0; i < jsonData.length; i++) {
-        var contact = new Contact();
-        contact.firstName = jsonData[i]['firstName'];
-        contact.lastName = jsonData[i]['lastName'];
-        contact.organisation = jsonData[i]['organisation'];
-        contact.title = jsonData[i]['title'];
-        contact.phone = jsonData[i]['phone'];
-        contact.cellPhone = jsonData[i]['cellPhone'];
-        contact.email = jsonData[i]['email'];
-
-        contactList.addContact(contact);
+        try {
+            var contact = new Contact();
+            contact.firstName = jsonData[i]['firstName'];
+            contact.lastName = jsonData[i]['lastName'];
+            contact.organisation = jsonData[i]['organisation'];
+            contact.title = jsonData[i]['title'];
+            contact.phone = jsonData[i]['phone'];
+            contact.cellPhone = jsonData[i]['cellPhone'];
+            contact.email = jsonData[i]['email'];
+            contactList.addContact(contact);
+        } catch (e) {
+            handleException(e);
+        }
     }
 
 //    console.log(prettyjson.render(contactList, prettyJsonOptions));
@@ -58,7 +55,7 @@ fs.readFile(file, 'utf8', function (err, data) {
 //    } catch (e) {
 //        handleException(e);
 //    }
-    
+
     // Si on a des contacts similaires (à tester avec sample_c.vcf)
     try {
         contactList.displayConflicts();
@@ -66,11 +63,10 @@ fs.readFile(file, 'utf8', function (err, data) {
         handleException(e);
     }
 });
-
 function handleException(e) {
     var error = chalk.white.bgRed.bold;
     var errorMsg = chalk.bold.red;
-        var info = chalk.white.bgBlue.bold;
+    var info = chalk.white.bgBlue.bold;
     var infoMsg = chalk.bold.blue;
     if (e.type === "info") {
         console.log(info(" " + e.type + " ") + " " + infoMsg(e.message));
