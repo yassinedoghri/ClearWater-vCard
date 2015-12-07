@@ -50,8 +50,7 @@ vCardParser.prototype.parseToJSON = function () {
                     } else if (/^(cell)$/.test(d[1])) {
                         json["cellPhone"] = d[3];
                     } else {
-                        console.log("Libellé de téléphone invalide !".error);
-                        process.exit();
+                        throw {name: "phoneType", type: "error", message: "Type de téléphone invalide !"};
                     }
                 } else if (data[j].startsWith("N:")) {
                     var d = this.tokenize(data[j], /(:|;)/);

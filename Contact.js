@@ -25,8 +25,7 @@ function Contact() {
                 if (matched) {
                     firstName = matched[0];
                 } else {
-                    console.log("Format Prénom invalide !".error);
-                    process.exit();
+                    throw {name: "firstNameValue", type: "error", message: "Le format du Prénom est incorrect"};
                 }
             }
         },
@@ -39,8 +38,7 @@ function Contact() {
                 if (matched) {
                     lastName = matched[0];
                 } else {
-                    console.log("Format Nom invalide !".error);
-                    process.exit();
+                    throw {name: "lastNameValue", type: "error", message: "Le format du Nom est incorrect"};
                 }
             }
         },
@@ -55,8 +53,7 @@ function Contact() {
                     if (matched) {
                         organisation.push(matched[0]);
                     } else {
-                        console.log("Format Companie invalide !".error);
-                        process.exit();
+                        throw {name: "orgValue", type: "error", message: "Le format de/des Compagnie(s) est incorrect"};
                     }
                 }
             }
@@ -72,8 +69,7 @@ function Contact() {
                     if (matched) {
                         title.push(matched[0]);
                     } else {
-                        console.log("Format Fonction invalide !".error);
-                        process.exit();
+                        throw {name: "titleValue", type: "error", message: "Le format de la/des fonction(s) est incorrect"};
                     }
                 }
             }
@@ -88,8 +84,7 @@ function Contact() {
                 if (matched) {
                     phone = value;
                 } else {
-                    console.log("Format Téléphone Fixe invalide !".error);
-                    process.exit();
+                    throw {name: "phoneValue", type: "error", message: "Le format du numéro de Téléphone fixe est incorrect"};
                 }
             }
         },
@@ -102,8 +97,7 @@ function Contact() {
                 if (matched) {
                     cellPhone = matched[0];
                 } else {
-                    console.log("Format Téléphone Portable invalide !".error);
-                    process.exit();
+                    throw {name: "cellPhoneValue", type: "error", message: "Le format du numéro de Téléphone Portable est incorrect"};
                 }
             }
         },
@@ -116,8 +110,7 @@ function Contact() {
                 if (matched) {
                     email = matched[0];
                 } else {
-                    console.log("Format d'Email Invalide !".error);
-                    process.exit();
+                    throw {name: "emailValue", type: "error", message: "Le format de l'Adresse Mail est incorrect"};
                 }
             }
         }
