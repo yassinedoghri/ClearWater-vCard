@@ -67,7 +67,11 @@ fs.readFile(file, 'utf8', function (err, data) {
 //        contactList.merge(answers);
 //    });
 
-    contactList.export("test/new", "csv");
+    try {
+        contactList.export("test/new", "csv");
+    } catch (e) {
+        handleException(e);
+    }
 });
 
 function mergeForm(contactList) {
