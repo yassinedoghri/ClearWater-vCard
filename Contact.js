@@ -121,13 +121,13 @@ Contact.prototype.toJSON = function () {
     var obj = {
         NOM: this.lastName,
         PRENOM: this.firstName,
-        ORGANISATION: this.organisation,
-        FONCTION: this.title,
-        TELEPHONE: this.phone,
+        ORGANISATION: this.organisation.join("/"),
+        FONCTION: this.title.join("/"),
+        TELEPHONE: this.phone.number,
         MOBILE: this.cellPhone,
         EMAIL: this.email
     };
-    return JSON.stringify(obj);
+    return obj;
 };
 
 Contact.prototype.toVCardString = function () {

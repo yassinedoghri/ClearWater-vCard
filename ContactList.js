@@ -171,9 +171,52 @@ ContactList.prototype.merge = function (choices) {
     return contactFusion;
 };
 
-ContactList.prototype.export = function (format) {
-    // TO DO
-    // exporte la liste de contact en CSV (.csv) ou en vCard (.vcf)
+ContactList.prototype.export = function (file, format) {
+    var fs = require("fs");
+    if (!/.(csv|vcf)$/i.file) {
+        file += "." + format.toLowerCase();
+    }
+    switch (format.toUpperCase()) {
+        case "CSV":
+            var json2csv = require('json2csv');
+            var fields = ["NOM", "PRENOM", "ORGANISATION", "FONCTION", "TELEPHONE", "MOBILE", "EMAIL"];
+            var contacts = [];
+            for (var i = 0; i < this.contacts.length; i++) {
+                contacts.push(this.contacts[i].toJSON());
+            }
+
+            json2csv({data: contacts, fields: fields}, function (err, csv) {
+                if (err) {
+                    throw err;
+                }
+                fs.writeFile(file, csv, function (err) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        console.log("L'export de la liste de contacts en CSV a réussi ! " + file + " a été Sauvegardé !");
+                    }
+                });
+            });
+            break;
+        case "VCF":
+            vcard = "";
+            for (var i = 0; i < this.contacts.length; i++) {
+                vcard += this.contacts[i].toVCardString();
+                if (i !== this.contacts.length - 1) {
+                    vcard += "\r\n";
+                }
+            }
+            fs.writeFile(file, vcard, function (err) {
+                if (err) {
+                    throw err;
+                }
+                console.log("L'export de la liste de contacts en vCard a réussi ! " + file + " a été Sauvegardé !");
+            });
+            break;
+        default:
+            throw {name: "formatValue", type: "error", message: "Veuillez choisir le format CSV ou VCARD"};
+            break;
+    }
 };
 
 ContactList.prototype.toString = function () {

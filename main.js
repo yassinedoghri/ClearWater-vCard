@@ -58,14 +58,20 @@ fs.readFile(file, 'utf8', function (err, data) {
 //    }
 
     // Si on a des contacts similaires (à tester avec sample_c.vcf)
+//    try {
+//        contactList.displayConflicts();
+//    } catch (e) {
+//        handleException(e);
+//    }
+//    inquirer.prompt(mergeForm(contactList), function (answers) {
+//        contactList.merge(answers);
+//    });
+
     try {
-        contactList.displayConflicts();
+        contactList.export("test/new", "csv");
     } catch (e) {
         handleException(e);
     }
-    inquirer.prompt(mergeForm(contactList), function (answers) {
-        contactList.merge(answers);
-    });
 });
 
 function mergeForm(contactList) {
