@@ -16,6 +16,7 @@ var prettyJsonOptions = {
     noColor: false
 };
 var fs = require('fs');
+var inquirer = require("inquirer");
 var vCardParser = require('./vCardParser.js');
 var Contact = require('./Contact.js');
 var ContactList = require('./ContactList.js');
@@ -62,7 +63,33 @@ fs.readFile(file, 'utf8', function (err, data) {
     } catch (e) {
         handleException(e);
     }
+    inquirer.prompt(mergeForm(contactList), function (answers) {
+        contactList.merge(answers);
+    });
 });
+
+function mergeForm(contactList) {
+    var conflicts = contactList.conflicts();
+    var form = [];
+    var formRef = {
+        organisation: {type: "checkbox", message: "l'/les organisation(s)"},
+        title: {type: "checkbox", message: "la ou les fonction(s)"},
+        phone: {type: "list", message: "le numero telephone"},
+        cellPhone: {type: "list", message: "le numero de télephone portable"},
+        email: {type: "list", message: "l'adresse mail"}
+    };
+    for (var p in conflicts) {
+        var question = {
+            type: formRef[p]["type"],
+            name: p,
+            message: "Choisissez " + formRef[p]["message"] + " que vous souhaitez conserver",
+            choices: conflicts[p]
+        };
+        form.push(question);
+    }
+    return form;
+}
+
 function handleException(e) {
     var error = chalk.white.bgRed.bold;
     var errorMsg = chalk.bold.red;
