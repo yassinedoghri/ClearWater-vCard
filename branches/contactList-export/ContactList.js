@@ -192,8 +192,9 @@ ContactList.prototype.export = function (file, format) {
                 fs.writeFile(file, csv, function (err) {
                     if (err) {
                         throw err;
+                    } else {
+                        console.log("L'export de la liste de contacts en CSV a réussi ! " + file + " a été Sauvegardé !");
                     }
-                    throw {name: "csvExport", type: "success", message: "L'export de la liste de contacts en CSV a réussi ! " + file + "a été Sauvegardé !"};
                 });
             });
             break;
@@ -209,7 +210,7 @@ ContactList.prototype.export = function (file, format) {
                 if (err) {
                     throw err;
                 }
-                throw {name: "vcfExport", type: "success", message: "L'export de la liste de contacts en VCARD a réussi ! " + file + "a été Sauvegardé !"};
+                console.log("L'export de la liste de contacts en vCard a réussi ! " + file + " a été Sauvegardé !");
             });
             break;
         default:
