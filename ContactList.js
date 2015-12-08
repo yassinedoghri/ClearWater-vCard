@@ -149,10 +149,26 @@ ContactList.prototype.displayConflicts = function () {
     }
 };
 
-ContactList.prototype.fusion = function () {
-    // TO DO
-    // Créé un nouveau contact avec les informations choisies par l'utilisateur
-    // en s'appuyant sur la méthode displayConflicts
+ContactList.prototype.merge = function (choices) {
+    var Contact = require("./Contact.js");
+    var contactFusion = new Contact();
+    var conflicts = this.conflicts();
+    var properties = ["organisation", "title", "phone", "cellPhone", "email"];
+    contactFusion.firstName = this.firstName;
+    contactFusion.lastName = this.lastName;
+    if (conflicts.hasOwnProperty("phone")) {
+        var phone = choices.phone.split(": ");
+        choices.phone = {"type": phone[0], "number": phone[1]};
+    }
+    for (var i in properties) {
+        if (conflicts.hasOwnProperty(properties[i])) {
+            contactFusion[properties[i]] = choices[properties[i]];
+        } else {
+            contactFusion[properties[i]] = this.contacts[0][properties[i]];
+        }
+    }
+    console.log(contactFusion.toString());
+    return contactFusion;
 };
 
 ContactList.prototype.export = function (format) {
