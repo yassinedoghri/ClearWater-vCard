@@ -146,12 +146,12 @@ Contact.prototype.toVCardString = function () {
 };
 
 Contact.prototype.toString = function () {
-    return "Nom Contact : " + this.firstName.verbose + " " + this.lastName.verbose +
-            "\nCompagnie : " + this.organisation.join(', ').verbose +
-            "\nFonction : " + this.title.join(', ').verbose +
-            "\nNuméro Téléphone (" + this.phone.type + ") : " + this.phone.number.verbose +
-            "\nNuméro Portable : " + this.cellPhone.verbose +
-            "\nEmail : " + this.email.verbose;
+    return "Nom Contact : " + this.firstName + " " + this.lastName +
+            "\nCompagnie : " + this.organisation.join(', ') +
+            "\nFonction : " + this.title.join(', ') +
+            "\nNuméro Téléphone (" + this.phone.type + ") : " + this.phone.number +
+            "\nNuméro Portable : " + this.cellPhone +
+            "\nEmail : " + this.email;
 };
 
 module.exports = Contact;
