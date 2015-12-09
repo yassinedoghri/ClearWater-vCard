@@ -11,9 +11,9 @@ L'application ClearWater a été développé à partir du cahier des charges sou
 
 Afin d’assurer le bon fonctionnement de la solution logicielle, il est demandé à l’utilisateur de présenter les contacts au sein de la liste fournie conformément au format d’entrée (précisé ci-dessous). 
 
-###### Les données en entrée seront au format suivant : 
+###### Les données en entrée seront au format vCard (*.vcf) : 
 
-*VCARD* 	=	‘BEGIN:VCARD’ CRLF ’VERSION:4.0’ CRLF CONTACT ’END:VCARD’ CRLF
+*VCARD* 	=	‘BEGIN:VCARD’ CRLF ’VERSION:4.0’ CRLF CONTACT CRLF ’END:VCARD’
 
 *CONTACT* 	= 	NP CRLF ORGANISATION CRLF FONCTION CRLF 1*TELEPHONE CRLF 1*MOBILE CRLF COURRIEL
 
@@ -23,13 +23,13 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 *FONCTION*	= 	‘TITLE:’ TEXT *(‘;’TEXT)
 
-*TELEPHONE*	= 	‘TEL;TYPE=‘.(‘home’/‘work’).’,voice;uri=:tel: +’ 11DIGIT
+*TELEPHONE*	= 	‘TEL;TYPE=‘.(‘home’/‘work’).’,voice;uri=:tel:+’ 11DIGIT
 
 *COURRIEL*	= 	‘EMAIL:’ 1*VCHAR.’@‘1*VCHAR’.’1*VCHAR
 
 *TEXT*		= 	1*(WSP/VCHAR)
 
-###### Les données en sortie seront au format suivant : 
+###### Les données en sortie seront au format CSV (*.csv) : 
 
 *CSV* 		= 	COLONNES CRLF *(LIGNE)
 
@@ -45,7 +45,8 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 ##### Exportation :
 Les fichiers exportés seront sauvegardés dans un dossier *exports* qui sera créé s'il n'existe pas.
-Leur nom sera sous la forme suivante : **[yyyy-mm-dd]_[time]_merge-contacts.(csv|vcf)**
+Leur nom sera sous la forme suivante : **merge-contacts_[yyyy-mm-dd]_[time].(csv|vcf)**
+NB: Pour lire correctement un fichier CSV sur un logiciel de type tableur, il faudra l'importer depuis ce dernier et définir le délimiteur en tant que virgule.
 
 
 ### Mode d’Emploi
