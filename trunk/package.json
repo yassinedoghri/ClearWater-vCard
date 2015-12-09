@@ -1,12 +1,12 @@
 {
   "name" : "dionysos-gl02",
-  "description" : "Dionysos Project",
-  "version" : "0.0.1",
+  "description" : "Dionysos Project - ClearWater",
+  "version" : "1.0",
   "main" : "./main.js",
   "author" : {
     "name" : "Atlantis"
   },
-  "keywords" : [ ],
+  "keywords" : ["NodeJs", "Command Line", "vCard", "Atlantis", "GL02"],
   "licenses" : {
     "type" : "none"
   },
