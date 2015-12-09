@@ -37,18 +37,21 @@ vCardParser.prototype.parseToJSON = function () {
 
     for (var i = 0; i < dataArr.length; i++) {
         var json = {};
+        var phones = [];
+        var cellPhones = [];
         data = this.tokenize(dataArr[i], /(\r\n)/);
         for (var j = 0; j < data.length; j++) {
             if (!data[j].match(/(:VCARD)/)) {
+
                 if (data[j].startsWith("TEL;")) {
                     var d = this.tokenize(data[j], /(;TYPE=|:tel:|,voice;VALUE=)/);
                     if (/^(work|home)$/.test(d[1])) {
-                        json[this.fieldAssociations["TEL"]] = {
+                        phones.push({
                             "type": d[1],
                             "number": d[3]
-                        };
+                        });
                     } else if (/^(cell)$/.test(d[1])) {
-                        json["cellPhone"] = d[3];
+                        cellPhones.push(d[3]);
                     } else {
                         throw {name: "phoneType", type: "error", message: "Type de téléphone invalide !"};
                     }
@@ -66,6 +69,8 @@ vCardParser.prototype.parseToJSON = function () {
                 }
             }
         }
+        json[this.fieldAssociations["TEL"]] = phones;
+        json["cellPhone"] = cellPhones;
         this.jsonData.push(json);
     }
 };

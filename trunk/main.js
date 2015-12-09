@@ -40,10 +40,12 @@ function start() {
     ];
     if (contactList.contactNumber > 0) {
         choices.splice(1, 0, {value: 2, name: "Continuer avec les contacts déjà importés"});
-        choices.splice(-1, 0, {value: 4, name: "Réinitialiser"});
+        choices.splice(-1, 0, {value: 5, name: "Réinitialiser"});
     }
     if (mergedContacts.contactNumber > 0) {
-        choices.splice(2, 0, {value: 3, name: "Exporter la liste des contacts fusionnés"});
+        choices.splice(2, 0, new inquirer.Separator());
+        choices.splice(3, 0, {value: 3, name: "Afficher les contacts fusionnés"});
+        choices.splice(4, 0, {value: 4, name: "Exporter les contacts fusionnés"});
     }
     inquirer.prompt([
         {
@@ -61,9 +63,15 @@ function start() {
                 importContacts();
                 break;
             case 3:
-                exportForm(start);
+                for (var i = 0; i < mergedContacts.contacts.length; i++) {
+                    console.log(mergedContacts.contacts[i].toString() + "\n");
+                }
+                start();
                 break;
             case 4:
+                exportForm(start);
+                break;
+            case 5:
                 reset();
                 break;
             default:
@@ -144,7 +152,9 @@ function askVCards() {
                                 return false;
                             }
                         }
-                        console.log("L'importation des contacts à réussie !");
+                        console.log("L'importation des contacts à réussie : " +
+                                contactList.contactNumber +
+                                " profils ont étés importés !");
                         importContacts();
                     });
                 } catch (e) {
@@ -171,11 +181,13 @@ function importContacts() {
         {value: 1, name: "Afficher les contacts importés"},
         {value: 2, name: pre2 + "rofils similaires"},
         new inquirer.Separator(),
-        {value: 4, name: "Retour"},
+        {value: 5, name: "Retour"},
         {value: 0, name: "Quitter"}
     ];
     if (mergedContacts.contactNumber > 0) {
-        choices.splice(2, 0, {value: 3, name: "Exporter la liste des contacts fusionnés"});
+        choices.splice(2, 0, new inquirer.Separator());
+        choices.splice(3, 0, {value: 3, name: "Afficher les contacts fusionnés"});
+        choices.splice(4, 0, {value: 4, name: "Exporter les contacts fusionnés"});
     }
     inquirer.prompt([
         {
@@ -206,9 +218,15 @@ function importContacts() {
                 }
                 break;
             case 3:
-                exportForm(importContacts);
+                for (var i = 0; i < mergedContacts.contacts.length; i++) {
+                    console.log(mergedContacts.contacts[i].toString() + "\n");
+                }
+                importContacts();
                 break;
             case 4:
+                exportForm(importContacts);
+                break;
+            case 5:
                 start();
                 break;
             default:
@@ -347,8 +365,8 @@ function mergeForm(contactList) {
     var formRef = {
         organisation: {type: "checkbox", message: "l'/les organisation(s)"},
         title: {type: "checkbox", message: "la ou les fonction(s)"},
-        phone: {type: "list", message: "le numero telephone"},
-        cellPhone: {type: "list", message: "le numero de télephone portable"},
+        phone: {type: "checkbox", message: "le/les numéro(s) de téléphone"},
+        cellPhone: {type: "checkbox", message: "le/les numéro(s) de téléphone portable"},
         email: {type: "list", message: "l'adresse mail"}
     };
     for (var p in conflicts) {

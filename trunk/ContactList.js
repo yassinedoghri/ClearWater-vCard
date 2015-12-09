@@ -101,12 +101,16 @@ ContactList.prototype.conflicts = function () {
                     conflicts[properties[j]] = [];
                 }
                 if (this.contacts[i][properties[j]] instanceof Array) {
-                    for (var k in this.contacts[i][properties[j]]) {
-                        conflicts[properties[j]].push(this.contacts[i][properties[j]][k]);
+                    if (properties[j] === "phone") {
+                        for (var k in this.contacts[i][properties[j]]) {
+                            var phone = this.contacts[i][properties[j]][k];
+                            conflicts[properties[j]].push(phone["type"] + ": " + phone["number"]);
+                        }
+                    } else {
+                        for (var k in this.contacts[i][properties[j]]) {
+                            conflicts[properties[j]].push(this.contacts[i][properties[j]][k]);
+                        }
                     }
-                } else if (properties[j] === "phone") {
-                    var phone = this.contacts[i][properties[j]];
-                    conflicts[properties[j]].push(phone["type"] + ": " + phone["number"]);
                 } else {
                     conflicts[properties[j]].push(this.contacts[i][properties[j]]);
                 }
@@ -160,9 +164,11 @@ ContactList.prototype.merge = function (choices) {
     var properties = ["organisation", "title", "phone", "cellPhone", "email"];
     mergedContact.firstName = this.firstName;
     mergedContact.lastName = this.lastName;
-    if (conflicts.hasOwnProperty("phone")) {
-        var phone = choices.phone.split(": ");
-        choices.phone = {"type": phone[0], "number": phone[1]};
+    if (choices.hasOwnProperty("phone")) {
+        for (var i = 0; i < choices["phone"].length; i++) {
+            var phone = choices["phone"][i].split(": ");
+            choices["phone"][i] = {"type": phone[0], "number": phone[1]};
+        }
     }
     for (var i in properties) {
         if (conflicts.hasOwnProperty(properties[i])) {
@@ -171,6 +177,7 @@ ContactList.prototype.merge = function (choices) {
             mergedContact[properties[i]] = this.contacts[0][properties[i]];
         }
     }
+    console.log("Contacts Fusionés !");
     console.log(mergedContact.toString());
     return mergedContact;
 };

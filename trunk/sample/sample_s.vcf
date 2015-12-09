@@ -13,6 +13,7 @@ N:Bond;James
 ORG:Mi6
 TITLE:Spy;00 Agent
 TEL;TYPE=work,voice;VALUE=uri:tel:+33100700718
+TEL;TYPE=home,voice;VALUE=uri:tel:+33100745679
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33600710018
 EMAIL:james.bond@mi6.com
 END:VCARD

@@ -8,8 +8,8 @@
  * @property {String} lastName Nom du contact
  * @property {Array} organisation Entreprise(s) dans laquelle travaille le contact
  * @property {Array} title Fonction(s) du contact
- * @property {Object} phone Numéro de téléphone fixe (travail ou domicile) du contact
- * @property {String} cellPhone Numéro de téléphone portable du contact
+ * @property {Array} phone Numéro(s) de téléphone fixe (travail ou domicile) du contact
+ * @property {Array} cellPhone Numéro(s) de téléphone portable du contact
  * @property {String} email Adresse mail du contact
  */
 function Contact() {
@@ -79,12 +79,14 @@ function Contact() {
                 return phone;
             },
             set: function (value) {
-                phone = {};
-                var matched = value['number'].match(/^(\+\d{11})$/);
-                if (matched) {
-                    phone = value;
-                } else {
-                    throw {name: "phoneValue", type: "error", message: "Le format du numéro de Téléphone fixe est incorrect pour '" + value['number'] + "'"};
+                phone = [];
+                for (var i = 0; i < value.length; i++) {
+                    var matched = value[i]['number'].match(/^(\+\d{11})$/);
+                    if (matched) {
+                        phone.push(value[i]);
+                    } else {
+                        throw {name: "phoneValue", type: "error", message: "Le format du numéro de Téléphone fixe est incorrect pour '" + value['number'] + "'"};
+                    }
                 }
             }
         },
@@ -93,11 +95,14 @@ function Contact() {
                 return cellPhone;
             },
             set: function (value) {
-                var matched = value.match(/^(\+\d{11})$/);
-                if (matched) {
-                    cellPhone = matched[0];
-                } else {
-                    throw {name: "cellPhoneValue", type: "error", message: "Le format du numéro de Téléphone Portable est incorrect pour '" + value + "'"};
+                cellPhone = [];
+                for (var i = 0; i < value.length; i++) {
+                    var matched = value[i].match(/^(\+\d{11})$/);
+                    if (matched) {
+                        cellPhone.push(matched[0]);
+                    } else {
+                        throw {name: "cellPhoneValue", type: "error", message: "Le format du numéro de Téléphone Portable est incorrect pour '" + value + "'"};
+                    }
                 }
             }
         },
@@ -118,27 +123,49 @@ function Contact() {
 }
 
 Contact.prototype.toJSON = function () {
+    var phoneS = "";
+    for (var i = 0; i < this.phone.length; i++) {
+        phoneS += this.phone[i].number + "(" + this.phone[i]["type"] + ")";
+        if (i < this.phone.length - 1) {
+            phoneS += "/";
+        }
+    }
     var obj = {
         NOM: this.lastName,
         PRENOM: this.firstName,
         ORGANISATION: this.organisation.join("/"),
         FONCTION: this.title.join("/"),
-        TELEPHONE: this.phone.number,
-        MOBILE: this.cellPhone,
+        TELEPHONE: phoneS,
+        MOBILE: this.cellPhone.join("/"),
         EMAIL: this.email
     };
     return obj;
 };
 
 Contact.prototype.toVCardString = function () {
+    var phoneS = "";
+    for (var i = 0; i < this.phone.length; i++) {
+        phoneS += "TEL;TYPE=" + this.phone[i]["type"] + ",voice;VALUE=uri:tel:" + this.phone[i]["number"];
+        if (i < this.phone.length - 1) {
+            phoneS += "\r\n";
+        }
+    }
+
+    var cellPhoneS = "";
+    for (var i = 0; i < this.cellPhone.length; i++) {
+        cellPhoneS += "TEL;TYPE=cell,voice;VALUE=uri:tel:" + this.cellPhone[i];
+        if (i < this.cellPhone.length - 1) {
+            cellPhoneS += "\r\n";
+        }
+    }
     var vCardArray = [
         "BEGIN:VCARD",
         "VERSION:4.0",
         "N:" + this.lastName + ";" + this.firstName,
         "ORG:" + this.organisation.join(";"),
         "TITLE:" + this.title.join(";"),
-        "TEL;TYPE=" + this.phone["type"] + ",voice;VALUE=uri:tel:" + this.phone["number"],
-        "TEL;TYPE=cell,voice;VALUE=uri:tel:" + this.cellPhone,
+        phoneS,
+        cellPhoneS,
         "EMAIL:" + this.email,
         "END:VCARD"
     ];
@@ -147,11 +174,20 @@ Contact.prototype.toVCardString = function () {
 
 Contact.prototype.toString = function () {
     var chalk = require("chalk");
+    var phoneS = "";
+    for (var i = 0; i < this.phone.length; i++) {
+        phoneS += "\n\t- " + this.phone[i]["number"] + " (" + this.phone[i]["type"] + ")";
+    }
+
+    var cellPhoneS = "";
+    for (var i = 0; i < this.cellPhone.length; i++) {
+        cellPhoneS += "\n\t- " + this.cellPhone[i];
+    }
     return chalk.green("Nom Contact : ") + this.firstName + " " + this.lastName +
             chalk.green("\nCompagnie : ") + this.organisation.join(', ') +
             chalk.green("\nFonction : ") + this.title.join(', ') +
-            chalk.green("\nNuméro Téléphone (" + this.phone.type + ") : ") + this.phone.number +
-            chalk.green("\nNuméro Portable : ") + this.cellPhone +
+            chalk.green("\nNuméro(s) Téléphone : ") + phoneS +
+            chalk.green("\nNuméro(s) Portable : ") + cellPhoneS +
             chalk.green("\nEmail : ") + this.email;
 };
 
