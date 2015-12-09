@@ -25,7 +25,7 @@ function Contact() {
                 if (matched) {
                     firstName = matched[0];
                 } else {
-                    throw {name: "firstNameValue", type: "error", message: "Le format du Prénom est incorrect"};
+                    throw {name: "firstNameValue", type: "error", message: "Le format du Prénom est incorrect pour '" + value + "'"};
                 }
             }
         },
@@ -38,7 +38,7 @@ function Contact() {
                 if (matched) {
                     lastName = matched[0];
                 } else {
-                    throw {name: "lastNameValue", type: "error", message: "Le format du Nom est incorrect"};
+                    throw {name: "lastNameValue", type: "error", message: "Le format du Nom est incorrect pour pour '" + value + "'"};
                 }
             }
         },
@@ -53,7 +53,7 @@ function Contact() {
                     if (matched) {
                         organisation.push(matched[0]);
                     } else {
-                        throw {name: "orgValue", type: "error", message: "Le format de/des Compagnie(s) est incorrect"};
+                        throw {name: "orgValue", type: "error", message: "Le format de/des Compagnie(s) est incorrect pour '" + value[i] + "'"};
                     }
                 }
             }
@@ -69,7 +69,7 @@ function Contact() {
                     if (matched) {
                         title.push(matched[0]);
                     } else {
-                        throw {name: "titleValue", type: "error", message: "Le format de la/des fonction(s) est incorrect"};
+                        throw {name: "titleValue", type: "error", message: "Le format de la/des fonction(s) est incorrect pour '" + value[i] + "'"};
                     }
                 }
             }
@@ -84,7 +84,7 @@ function Contact() {
                 if (matched) {
                     phone = value;
                 } else {
-                    throw {name: "phoneValue", type: "error", message: "Le format du numéro de Téléphone fixe est incorrect"};
+                    throw {name: "phoneValue", type: "error", message: "Le format du numéro de Téléphone fixe est incorrect pour '" + value['number'] + "'"};
                 }
             }
         },
@@ -97,7 +97,7 @@ function Contact() {
                 if (matched) {
                     cellPhone = matched[0];
                 } else {
-                    throw {name: "cellPhoneValue", type: "error", message: "Le format du numéro de Téléphone Portable est incorrect"};
+                    throw {name: "cellPhoneValue", type: "error", message: "Le format du numéro de Téléphone Portable est incorrect pour '" + value + "'"};
                 }
             }
         },
@@ -110,7 +110,7 @@ function Contact() {
                 if (matched) {
                     email = matched[0];
                 } else {
-                    throw {name: "emailValue", type: "error", message: "Le format de l'Adresse Mail est incorrect"};
+                    throw {name: "emailValue", type: "error", message: "Le format de l'Adresse Mail est incorrect pour '" + value + "'"};
                 }
             }
         }
@@ -146,12 +146,13 @@ Contact.prototype.toVCardString = function () {
 };
 
 Contact.prototype.toString = function () {
-    return "Nom Contact : " + this.firstName + " " + this.lastName +
-            "\nCompagnie : " + this.organisation.join(', ') +
-            "\nFonction : " + this.title.join(', ') +
-            "\nNuméro Téléphone (" + this.phone.type + ") : " + this.phone.number +
-            "\nNuméro Portable : " + this.cellPhone +
-            "\nEmail : " + this.email;
+    var chalk = require("chalk");
+    return chalk.green("Nom Contact : ") + this.firstName + " " + this.lastName +
+            chalk.green("\nCompagnie : ") + this.organisation.join(', ') +
+            chalk.green("\nFonction : ") + this.title.join(', ') +
+            chalk.green("\nNuméro Téléphone (" + this.phone.type + ") : ") + this.phone.number +
+            chalk.green("\nNuméro Portable : ") + this.cellPhone +
+            chalk.green("\nEmail : ") + this.email;
 };
 
 module.exports = Contact;
