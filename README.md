@@ -1,5 +1,6 @@
-ClearWater, Dionysos - Projet GL02
+ClearWater | Dionysos
 ==============
+###### Projet GL02 [UTT](http://www.utt.fr/)
 
 ### Description : 
 
@@ -91,7 +92,10 @@ $ npm install <nom_du_module>
 
 ### Fichiers joints :
 Des échantillons de données sont joints à cette solution logicielle. Ces échantillons de données permettront de tester fonctionnellement la solution proposée en fonction des données que l’utilisateur rentrera dans les différents champs.
-Ils se trouvent dans le répertoire *sample* du projet.
+Ils se trouvent dans le répertoire *sample* du projet. Trois fichiers sont fournis :
+- *sample.vcf* : Contient **22 profils** avec **8 doublons**
+- *sample_1.vcf* : Contient **5 profils** avec **2 doublons**
+- *sample_s.vcf* : Liste de **5 profils similaires** (mêmes noms et prénoms)
 
 ### Liste des contributeurs
 Yassine DOGHRI <yassine.doghri@utt.fr>
@@ -100,4 +104,4 @@ Youssef Nassim AZIZ <youssef_nassim.aziz@utt.fr>
 Ayoub BAKKALI EL KASMI <ayoub.bakkali_el_kasmi@utt.fr>
 
 ***
-Copyright © Atlantis 2015 | ClearWater-Dionysos v1.0
+Copyright © Atlantis 2015 | ClearWater-Dionysos v1.1
