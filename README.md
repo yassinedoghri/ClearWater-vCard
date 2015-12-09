@@ -56,7 +56,7 @@ Leur nom sera sous la forme suivante : **[yyyy-mm-dd]_[time]_merge-contacts.(csv
 Lancez le fichier main.js qui se trouve dans le répertoire du projet avec Nodejs comme suit:
 
 ```
-> node main.js
+$ node main.js
 ```
 
 L'application NodeJs se lancera et proposera plusieurs choix à l'utilisateur :
@@ -73,7 +73,7 @@ Il peut aussi **Réinitialiser** ses importations.
 ***
 
 ### Dépendances :
-Node.js >= v5.1.1
+**Node.js** >= v5.1.1
 
 Les modules à installer sont les suivants :
 - *chalk*
@@ -87,7 +87,7 @@ L’installation des modules doit être réalisé dans le dossier du projet.
 Pour installer un module, utiliser la commande suivante :
 
 ```
-> npm install <nom_du_module>
+$ npm install <nom_du_module>
 ```
 
 ***
