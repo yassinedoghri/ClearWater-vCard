@@ -67,16 +67,20 @@ ContactList.prototype.duplicates = function () {
     // Identifier tous les doublons entre au moins deux contacts
     if (this.contactNumber > 1) {
         if (this.similarContacts === false) {
-            var duplicates = [];
+            var duplicates = {};
             for (var i = 0; i < this.contactNumber; i++) {
                 var key = this.contacts[i].firstName + "." + this.contacts[i].lastName;
                 if (!(key in duplicates)) {
                     duplicates[key] = new ContactList();
-                    duplicates.similarContacts = true;
                     duplicates[key].firstName = this.contacts[i].firstName;
                     duplicates[key].lastName = this.contacts[i].lastName;
                 }
                 duplicates[key].addContact(this.contacts[i]);
+            }
+            for (var p in duplicates) {
+                if (duplicates[p].contactNumber <= 1) {
+                    delete duplicates[p];
+                }
             }
             return duplicates;
         } else {
@@ -151,24 +155,24 @@ ContactList.prototype.displayConflicts = function () {
 
 ContactList.prototype.merge = function (choices) {
     var Contact = require("./Contact.js");
-    var contactFusion = new Contact();
+    var mergedContact = new Contact();
     var conflicts = this.conflicts();
     var properties = ["organisation", "title", "phone", "cellPhone", "email"];
-    contactFusion.firstName = this.firstName;
-    contactFusion.lastName = this.lastName;
+    mergedContact.firstName = this.firstName;
+    mergedContact.lastName = this.lastName;
     if (conflicts.hasOwnProperty("phone")) {
         var phone = choices.phone.split(": ");
         choices.phone = {"type": phone[0], "number": phone[1]};
     }
     for (var i in properties) {
         if (conflicts.hasOwnProperty(properties[i])) {
-            contactFusion[properties[i]] = choices[properties[i]];
+            mergedContact[properties[i]] = choices[properties[i]];
         } else {
-            contactFusion[properties[i]] = this.contacts[0][properties[i]];
+            mergedContact[properties[i]] = this.contacts[0][properties[i]];
         }
     }
-    console.log(contactFusion.toString());
-    return contactFusion;
+    console.log(mergedContact.toString());
+    return mergedContact;
 };
 
 ContactList.prototype.export = function (file, format) {
