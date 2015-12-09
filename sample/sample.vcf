@@ -4,7 +4,9 @@ N:Gump;Forrest
 ORG:Bubba Gump Shrimp Co.;Cow Foundation
 TITLE:Shrimp Man
 TEL;TYPE=work,voice;VALUE=uri:tel:+33145789654
+TEL;TYPE=home,voice;VALUE=uri:tel:+33145789654
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612457896
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33645457896
 EMAIL:forrestgump@example.com
 END:VCARD
 BEGIN:VCARD
@@ -22,6 +24,7 @@ N:Zidane;Zinedine
 ORG:FIFA
 TITLE:Entraîneur;Manager
 TEL;TYPE=work,voice;VALUE=uri:tel:+33144877154
+TEL;TYPE=home,voice;VALUE=uri:tel:+33144877154
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612447100
 EMAIL:zzidane@fifa.com
 END:VCARD
@@ -67,6 +70,7 @@ N:Marx;Karl
 ORG:Facebook
 TITLE:Technicien;Informaticien
 TEL;TYPE=work,voice;VALUE=uri:tel:+33100718918
+TEL;TYPE=home,voice;VALUE=uri:tel:+33100718918
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612247100
 EMAIL:james.bond@mi6.com
 END:VCARD
@@ -77,6 +81,7 @@ ORG:FIFA
 TITLE:Defenseur;Entraineur
 TEL;TYPE=work,voice;VALUE=uri:tel:+33100718918
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33619047100
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33619045550
 EMAIL:karl.marx@fifa.com
 END:VCARD
 BEGIN:VCARD
@@ -94,7 +99,9 @@ N:Koch;Pierre
 ORG:ENAM
 TITLE:Chercheur;Enseignant
 TEL;TYPE=work,voice;VALUE=uri:tel:+33193877154
-TEL;TYPE=cell,voice;VALUE=uri:tel:+33600715418
+TEL;TYPE=home,voice;VALUE=uri:tel:+33193888154
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33640715418
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33604565125
 EMAIL:pierre.koch@enam.com
 END:VCARD
 BEGIN:VCARD
@@ -122,6 +129,7 @@ ORG:Seuil;Sciences po
 TITLE:Secretaire
 TEL;TYPE=work,voice;VALUE=uri:tel:+33145877154
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612448100
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33612445887
 EMAIL:dominque.cardon@seuil.com
 END:VCARD
 BEGIN:VCARD
@@ -130,6 +138,7 @@ N:Cardon;Dominique
 ORG:Figaro
 TITLE:Imprimeur;Journaliste
 TEL;TYPE=work,voice;VALUE=uri:tel:+33123877154
+TEL;TYPE=work,voice;VALUE=uri:tel:+33455557154
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612448100
 EMAIL:dominque.cardon@figaro.com
 END:VCARD
@@ -166,6 +175,7 @@ N:Zola;Emile
 ORG:FIFA
 TITLE:Entraîneur;Manager
 TEL;TYPE=work,voice;VALUE=uri:tel:+33148765154
+TEL;TYPE=home,voice;VALUE=uri:tel:+33145678891
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33600714589
 EMAIL:emile-zola@fifa.com
 END:VCARD
@@ -192,6 +202,7 @@ VERSION:4.0
 N:Dudebout;Paul
 ORG:Buffalo Grill
 TITLE:Plongeur;Serveur
+TEL;TYPE=home,voice;VALUE=uri:tel:+33100456792
 TEL;TYPE=work,voice;VALUE=uri:tel:+33100743762
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33676710018
 EMAIL:paul.dudebout@buffalo-grill.com

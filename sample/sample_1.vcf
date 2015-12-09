@@ -5,6 +5,7 @@ ORG:Bubba Gump Shrimp Co.;Cow Foundation
 TITLE:Shrimp Man
 TEL;TYPE=work,voice;VALUE=uri:tel:+33145789654
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612457896
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33612455596
 EMAIL:forrestgump@example.com
 END:VCARD
 BEGIN:VCARD
@@ -13,6 +14,7 @@ N:Bond;James
 ORG:Mi6
 TITLE:Spy
 TEL;TYPE=work,voice;VALUE=uri:tel:+33100710018
+TEL;TYPE=home,voice;VALUE=uri:tel:+33100710018
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33600710018
 EMAIL:james.bond@mi6.com
 END:VCARD
@@ -23,6 +25,7 @@ ORG:FIFA
 TITLE:Entraîneur;Manager
 TEL;TYPE=work,voice;VALUE=uri:tel:+33144877154
 TEL;TYPE=cell,voice;VALUE=uri:tel:+33612447100
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33612444456
 EMAIL:zzidane@fifa.com
 END:VCARD
 BEGIN:VCARD
