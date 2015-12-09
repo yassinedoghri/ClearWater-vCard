@@ -1,4 +1,4 @@
-Readme - ClearWater, Dionysos - Projet GL02
+ClearWater, Dionysos - Projet GL02
 ==============
 
 ### Description : 
@@ -13,7 +13,6 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 ###### Les données en entrée seront au format suivant : 
 
-```
 VCARD 		=	‘BEGIN:VCARD’ CRLF ’VERSION:4.0’ CRLF CONTACT ’END:VCARD’ CRLF
 
 CONTACT 	= 	NP CRLF ORGANISATION CRLF FONCTION CRLF 1*TELEPHONE CRLF 1*MOBILE CRLF COURRIEL
@@ -29,11 +28,9 @@ TELEPHONE	= 	‘TEL;TYPE=‘.(‘home’/‘work’).’,voice;uri=:tel: +’ 11
 COURRIEL	= 	‘EMAIL:’ 1*VCHAR.’@‘1*VCHAR’.’1*VCHAR
 
 TEXT		= 	1*(WSP/VCHAR)
-```
 
 ###### Les données en sortie seront au format suivant : 
 
-```
 CSV 		= 	COLONNES CRLF *(LIGNE)
 
 COLONNES 	= 	‘NOM, PRENOM, ORGANISATION, FONCTION, TELEPHONE, MOBILE, COURRIEL’
@@ -45,7 +42,6 @@ TEXT 		=	1*(WSP/VCHAR)
 TEXTORGA_FONC 	= 	TEXT *(‘/’ TEXT)
 
 TEXTTEL 	= 	1*(‘+’.11DIGIT)
-```
 
 ##### Exportation :
 Les fichiers exportés seront sauvegardés dans un dossier *exports* qui sera créé s'il n'existe pas.
