@@ -13,35 +13,35 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 ###### Les données en entrée seront au format suivant : 
 
-VCARD 		=	‘BEGIN:VCARD’ CRLF ’VERSION:4.0’ CRLF CONTACT ’END:VCARD’ CRLF
+*VCARD* 	=	‘BEGIN:VCARD’ CRLF ’VERSION:4.0’ CRLF CONTACT ’END:VCARD’ CRLF
 
-CONTACT 	= 	NP CRLF ORGANISATION CRLF FONCTION CRLF 1*TELEPHONE CRLF 1*MOBILE CRLF COURRIEL
+*CONTACT* 	= 	NP CRLF ORGANISATION CRLF FONCTION CRLF 1*TELEPHONE CRLF 1*MOBILE CRLF COURRIEL
 
-NP 		= 	’N:’ TEXT ‘;’ TEXT
+*NP* 		= 	’N:’ TEXT ‘;’ TEXT
 
-ORGANISATION	=	ORG:’ TEXT *(‘;’TEXT)
+*ORGANISATION*	=	ORG:’ TEXT *(‘;’TEXT)
 
-FONCTION	= 	‘TITLE:’ TEXT *(‘;’TEXT)
+*FONCTION*	= 	‘TITLE:’ TEXT *(‘;’TEXT)
 
-TELEPHONE	= 	‘TEL;TYPE=‘.(‘home’/‘work’).’,voice;uri=:tel: +’ 11DIGIT
+*TELEPHONE*	= 	‘TEL;TYPE=‘.(‘home’/‘work’).’,voice;uri=:tel: +’ 11DIGIT
 
-COURRIEL	= 	‘EMAIL:’ 1*VCHAR.’@‘1*VCHAR’.’1*VCHAR
+*COURRIEL*	= 	‘EMAIL:’ 1*VCHAR.’@‘1*VCHAR’.’1*VCHAR
 
-TEXT		= 	1*(WSP/VCHAR)
+*TEXT*		= 	1*(WSP/VCHAR)
 
 ###### Les données en sortie seront au format suivant : 
 
-CSV 		= 	COLONNES CRLF *(LIGNE)
+*CSV* 		= 	COLONNES CRLF *(LIGNE)
 
-COLONNES 	= 	‘NOM, PRENOM, ORGANISATION, FONCTION, TELEPHONE, MOBILE, COURRIEL’
+*COLONNES* 	= 	‘NOM, PRENOM, ORGANISATION, FONCTION, TELEPHONE, MOBILE, COURRIEL’
 
-LIGNE 		= 	TEXT.’,’.TEXT.’,’.TEXTORGA_FONC.’,’.TEXTORGA_FONC.’,’.TEXTTEL.’,’.TEXTTEL.’,’.TEXT
+*LIGNE* 	= 	TEXT.’,’.TEXT.’,’.TEXTORGA_FONC.’,’.TEXTORGA_FONC.’,’.TEXTTEL.’,’.TEXTTEL.’,’.TEXT
 
-TEXT 		=	1*(WSP/VCHAR) 
+*TEXT* 		=	1*(WSP/VCHAR) 
 
-TEXTORGA_FONC 	= 	TEXT *(‘/’ TEXT)
+*TEXTORGA_FONC*	= 	TEXT *(‘/’ TEXT)
 
-TEXTTEL 	= 	1*(‘+’.11DIGIT)
+*TEXTTEL* 	= 	1*(‘+’.11DIGIT)
 
 ##### Exportation :
 Les fichiers exportés seront sauvegardés dans un dossier *exports* qui sera créé s'il n'existe pas.
