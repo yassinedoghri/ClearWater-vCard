@@ -1,7 +1,7 @@
 {
   "name" : "dionysos-gl02",
   "description" : "Dionysos Project - ClearWater",
-  "version" : "1.0",
+  "version" : "1.1",
   "main" : "./main.js",
   "author" : {
     "name" : "Atlantis"
