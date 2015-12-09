@@ -12,15 +12,13 @@
  * Copyright (C) 2015 Atlantis
  */
 
-var prettyjson = require('prettyjson');
-var chalk = require('chalk');
-var prettyJsonOptions = {
-    noColor: false
-};
+// npm Modules (third party)
 var fs = require('fs');
+var chalk = require('chalk');
 var inquirer = require('inquirer');
 var async = require('async');
-var readMultipleFiles = require('read-multiple-files');
+
+// project Modules
 var vCardParser = require('./vCardParser.js');
 var Contact = require('./Contact.js');
 var ContactList = require('./ContactList.js');
