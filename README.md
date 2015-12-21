@@ -20,7 +20,7 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 *NP* 		= 	’N:’ TEXT ‘;’ TEXT
 
-*ORGANISATION*	=	ORG:’ TEXT *(‘;’TEXT)
+*ORGANISATION*	=	’ORG:’ TEXT *(‘;’TEXT)
 
 *FONCTION*	= 	‘TITLE:’ TEXT *(‘;’TEXT)
 
@@ -34,7 +34,7 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 *CSV* 		= 	COLONNES CRLF *(LIGNE)
 
-*COLONNES* 	= 	‘NOM, PRENOM, ORGANISATION, FONCTION, TELEPHONE, MOBILE, COURRIEL’
+*COLONNES* 	= 	‘NOM,PRENOM,ORGANISATION,FONCTION,TELEPHONE,MOBILE,COURRIEL’
 
 *LIGNE* 	= 	TEXT.’,’.TEXT.’,’.TEXTORGA_FONC.’,’.TEXTORGA_FONC.’,’.TEXTTEL.’,’.TEXTTEL.’,’.TEXT
 
@@ -46,18 +46,20 @@ Afin d’assurer le bon fonctionnement de la solution logicielle, il est demand�
 
 ##### Exportation :
 Les fichiers exportés seront sauvegardés dans un dossier *exports* qui sera créé s'il n'existe pas.
-Leur nom sera sous la forme suivante : **merge-contacts_[yyyy-mm-dd]_[time].(csv|vcf)**
-NB: Pour lire correctement un fichier CSV sur un logiciel de type tableur, il faudra l'importer depuis ce dernier et définir le délimiteur en tant que virgule.
+Leur nom sera sous la forme suivante : **merge-contacts_<yyyy-mm-dd>_<time>.(csv|vcf)**
 
+*NB:* Pour lire correctement un fichier CSV sur un logiciel de type tableur, il faudra l'importer depuis ce dernier et définir le délimiteur en tant que virgule.
+
+***
 
 ### Mode d’Emploi
-Lancez le fichier main.js qui se trouve dans le répertoire du projet avec Nodejs comme suit:
+Lancez l'application en éxecutant le fichier main.js qui se trouve dans le répertoire du projet avec Node.js avec la commande suivante :
 
 ```
 $ node main.js
 ```
 
-L'application NodeJs se lancera et proposera plusieurs choix à l'utilisateur :
+L'application Node.js se lancera et proposera plusieurs choix à l'utilisateur :
 - **Import de fichier(s) .vcf (vCard)** : l'utilisateur pourra renseigner un ou plusieurs fichiers afin de les importer
 - **Afficher les contacts importés** : l'utilisateur pourra afficher les contacts qu'il aura importé depuis un fichier .vcf
 - **Rechercher les profils similaires** : l'utilisateur pourra lancer une opération pour détéerminer les profils similaires dans les contacts qu'il a importé, il pourra aussi les afficher
@@ -71,31 +73,32 @@ Il peut aussi **Réinitialiser** ses importations.
 ***
 
 ### Dépendances :
-**Node.js** >= v5.1.1
+**node** >= v5.1.0
 
-Les modules à installer sont les suivants :
-- *chalk*
-- *prettyjson*
-- *inquirer*
-- *cli-table*
-- *json2csv*
-- *async*
+Les modules utilisés sont les suivants :
+- *async* v1.5.x
+- *chalk* v1.1.x
+- *cli-table* v0.3.x
+- *inquirer* v0.11.x
+- *json2csv* v3.0.x
 
 L’installation des modules doit être réalisé dans le dossier du projet.
-Pour installer un module, utiliser la commande suivante :
+Pour installer les modules, utiliser la commande suivante :
 
 ```
-$ npm install <nom_du_module>
+$ npm install
 ```
 
 ***
 
 ### Fichiers joints :
-Des échantillons de données sont joints à cette solution logicielle. Ces échantillons de données permettront de tester fonctionnellement la solution proposée en fonction des données que l’utilisateur rentrera dans les différents champs.
-Ils se trouvent dans le répertoire *sample* du projet. Trois fichiers sont fournis :
+Des échantillons de données sont joints à cette solution logicielle. Ils permettront de tester fonctionnellement la solution proposée en fonction des données que l’utilisateur rentrera dans les différents champs.
+Ces échantillons de données se trouvent dans le répertoire *sample* du projet. Trois fichiers sont fournis :
 - *sample.vcf* : Contient **22 profils** avec **8 doublons**
 - *sample_1.vcf* : Contient **5 profils** avec **2 doublons**
 - *sample_s.vcf* : Liste de **5 profils similaires** (mêmes noms et prénoms)
+
+***
 
 ### Liste des contributeurs
 Yassine DOGHRI <yassine.doghri@utt.fr>
@@ -104,4 +107,4 @@ Youssef Nassim AZIZ <youssef_nassim.aziz@utt.fr>
 Ayoub BAKKALI EL KASMI <ayoub.bakkali_el_kasmi@utt.fr>
 
 ***
-Copyright © Atlantis 2015 | ClearWater-Dionysos v1.1
+Copyright © Atlantis 2015 | ClearWater-Dionysos v1.1.1
