@@ -60,6 +60,7 @@ $ node main.js
 ```
 
 L'application Node.js se lancera et proposera plusieurs choix à l'utilisateur :
+
 - **Import de fichier(s) .vcf (vCard)** : l'utilisateur pourra renseigner un ou plusieurs fichiers afin de les importer
 - **Afficher les contacts importés** : l'utilisateur pourra afficher les contacts qu'il aura importé depuis un fichier .vcf
 - **Rechercher les profils similaires** : l'utilisateur pourra lancer une opération pour détéerminer les profils similaires dans les contacts qu'il a importé, il pourra aussi les afficher
@@ -76,6 +77,7 @@ Il peut aussi **Réinitialiser** ses importations.
 **node** >= v5.1.0
 
 Les modules utilisés sont les suivants :
+
 - *async* v1.5.x
 - *chalk* v1.1.x
 - *cli-table* v0.3.x
