@@ -1,0 +1,28 @@
+{
+    "name": "dionysos-gl02",
+    "description": "Dionysos Project - ClearWater",
+    "version": "1.1.1",
+    "main": "./main.js",
+    "author": {
+        "name": "Atlantis"
+    },
+    "dependencies": {
+        "async": "1.5.x",
+        "chalk": "1.1.x",
+        "cli-table": "0.3.x",
+        "inquirer": "0.11.x",
+        "json2csv": "3.0.x"
+    },
+    "keywords": ["NodeJs", "Command Line", "vCard", "Atlantis", "GL02"],
+    "licenses": {
+        "type": "none"
+    },
+    "repository": {
+        "type": "svn",
+        "url": "svn+ssh://YOUR_LOGIN@svn.code.sf.net/p/dionysos-gl02/code/"
+    },
+    "bugs": {
+        "url": "https://sourceforge.net/p/dionysos-gl02/tickets/"
+    },
+    "engine": "node >= 5.1.0"
+}
