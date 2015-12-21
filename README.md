@@ -101,10 +101,10 @@ Ces échantillons de données se trouvent dans le répertoire *sample* du projet
 ***
 
 ### Liste des contributeurs
-Yassine DOGHRI <yassine.doghri@utt.fr>
-Valentin HACHET <valentin.hachet@utt.fr>
-Youssef Nassim AZIZ <youssef_nassim.aziz@utt.fr>
-Ayoub BAKKALI EL KASMI <ayoub.bakkali_el_kasmi@utt.fr>
+- Yassine DOGHRI <yassine.doghri@utt.fr>
+- Valentin HACHET <valentin.hachet@utt.fr>
+- Youssef Nassim AZIZ <youssef_nassim.aziz@utt.fr>
+- Ayoub BAKKALI EL KASMI <ayoub.bakkali_el_kasmi@utt.fr>
 
 ***
 Copyright © Atlantis 2015 | ClearWater-Dionysos v1.1.1
