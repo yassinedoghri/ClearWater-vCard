@@ -94,6 +94,7 @@ $ npm install
 ### Fichiers joints :
 Des échantillons de données sont joints à cette solution logicielle. Ils permettront de tester fonctionnellement la solution proposée en fonction des données que l’utilisateur rentrera dans les différents champs.
 Ces échantillons de données se trouvent dans le répertoire *sample* du projet. Trois fichiers sont fournis :
+
 - *sample.vcf* : Contient **22 profils** avec **8 doublons**
 - *sample_1.vcf* : Contient **5 profils** avec **2 doublons**
 - *sample_s.vcf* : Liste de **5 profils similaires** (mêmes noms et prénoms)
