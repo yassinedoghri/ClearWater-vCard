@@ -21,7 +21,7 @@
     "GL02"
   ],
   "licenses": {
-    "type": "none"
+    "type": "GNU GPLv2"
   },
   "repository": {
     "type": "svn",
