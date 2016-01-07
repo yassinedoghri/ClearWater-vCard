@@ -3,7 +3,7 @@
  * Définit une liste de contacts où des contacts peuvent être ajoutés ou retirés.
  * Permet d'effectuer des opérations pour trouver des doublons, des conflits
  * mais aussi d'exporter la liste dans différents formats (CSV ou vCard).
- * 
+ *
  * @class ContactList
  * @property {Array} contacts Tableau contenant les objets Contact
  */
@@ -239,12 +239,7 @@ ContactList.prototype.toString = function () {
 };
 
 Object.size = function (obj) {
-    var size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key))
-            size++;
-    }
-    return size;
+  return Object.keys(obj).length;
 };
 
 function uniq(a) {
