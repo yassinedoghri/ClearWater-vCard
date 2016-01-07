@@ -58,6 +58,7 @@ function start() {
     ], function (answers) {
         switch (answers.start) {
             case 1:
+				console.log("Veuillez renseigner un ou plusieurs fichiers vCards (séparés par une virgule) ou tapez 'r' pour revenir :");
                 askVCards();
                 break;
             case 2:
@@ -87,8 +88,8 @@ function askVCards() {
         {
             type: "input",
             name: "vCards",
-            message: "Veuillez renseigner un ou plusieurs fichiers vCards (séparés par une virgule) ou tapez 'r' pour revenir :",
-            validate: function (input) {
+            message: "=>",
+			validate: function (input) {
                 var done = this.async();
 
                 var inputA = [];
