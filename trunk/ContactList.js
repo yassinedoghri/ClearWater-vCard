@@ -1,4 +1,5 @@
 /**
+ * Licence GNU GPLv2
  * ContactList Class
  * Définit une liste de contacts où des contacts peuvent être ajoutés ou retirés.
  * Permet d'effectuer des opérations pour trouver des doublons, des conflits

@@ -8,8 +8,9 @@
  * @author Valentin HACHET <valentin.hachet@utt.fr>
  * @author Youssef Nassim AZIZ <youssef_nassim.aziz@utt.fr>
  * @author Ayoub BAKKALI EL KASMI <ayoub.bakkali_el_kasmi@utt.fr>
- * 
+ *
  * Copyright (C) 2015 Atlantis
+ * Licence GNU GPLv2
  */
 
 // npm Modules (third party)
@@ -107,7 +108,7 @@ function askVCards() {
                             return;
                         }
                     }
-                    // Pass the return value in the done callback 
+                    // Pass the return value in the done callback
                     done(true);
                 }, 0);
             }
