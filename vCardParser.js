@@ -1,4 +1,5 @@
 /**
+ * Licence GNU GPLv2
  * vCardParser Class
  * Analyse des données sous la structure vCard
  * et permet de les reformater en JSON
