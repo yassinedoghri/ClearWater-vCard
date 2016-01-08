@@ -1,0 +1,27 @@
+BEGIN:VCARD
+VERSION:4.0
+N:Koch;Pierre
+ORG:UTC
+TITLE:Professeur;President
+TEL;TYPE=work,voice;VALUE=uri:tel:+33100713918
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33600715418
+EMAIL:pierre.kock@utc.fr
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+N:Cardon;Dominique
+ORG:Seuil;Sciences po
+TITLE:Chercheur;Professeur
+TEL;TYPE=work,voice;VALUE=uri:tel:+33145877154
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33612448100
+EMAIL:dominique.cardon@sc-po.com
+END:VCARD
+BEGIN:VCARD
+VERSION:4.0
+N:Flaubert;Gustave
+ORG:Pinder
+TITLE:Trapeziste;Clown
+TEL;TYPE=work,voice;VALUE=uri:tel:+33165390018
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33675391001
+EMAIL:gustave.flaubert@pinder.com
+END:VCARD

@@ -1,0 +1,9 @@
+BEGIN:VCARD
+VERSION:4.0
+N:Gump;Forrest
+ORG:Bubba Gump Shrimp Co.;Cow Foundation
+TITLE:Shrimp Man
+TEL;TYPE=work,voice;VALUE=uri:tel:+33145789654
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33612457896
+TEL;TYPE=cell,voice;VALUE=uri:tel:+33612455596
+EMAIL:forrestgump@example.com
