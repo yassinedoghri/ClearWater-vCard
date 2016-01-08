@@ -121,8 +121,27 @@ function askVCards() {
                 break;
             default:
                 try {
-                    var vcards = answers.vCards.split(',');
-                    vcards = vcards.map(Function.prototype.call, String.prototype.trim);
+					var vcards = answers.vCards.split(',');
+                    var vlength = vcards.length;
+					console.log(vlength);
+					console.log(vcards[0]);
+           			//Test pour eviter d'importer deux fois un même fichier
+					for(var i = 0; i< vlength; i++){
+						for(var j=1; j< vlength; j++) {
+							if(vcards[i] === vcards[j]){
+								console.log("on est la");
+								console.log(i);
+								console.log(j);
+								if(i!=j){
+									vcards.splice(j, 1);
+									console.log(vcards);
+									vlength = vlength-1;
+								}
+							}
+						}
+					}
+					//Fin du test
+					vcards = vcards.map(Function.prototype.call, String.prototype.trim);
                     async.map(vcards, readAsync, function (err, results) {
                         if (err) {
                             var error = chalk.white.bgRed.bold;

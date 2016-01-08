@@ -154,8 +154,8 @@ ContactList.prototype.displayConflicts = function () {
         console.log(title);
         console.log(table.toString());
     } else {
-        throw {name: 'NoneToDisplay', type: "info", message: "Aucun conflit n'a été détecté pour " + this.firstName + " " + this.lastName + " !"};
-    }
+		console.log("Aucun conflit n'a été détecté pour " + this.firstName + " " + this.lastName + " !");
+	}
 };
 
 ContactList.prototype.merge = function (choices) {
