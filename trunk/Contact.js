@@ -1,5 +1,4 @@
-/**
- * Licence GNU GPLv2
+s/**
  * Contact class
  * Définit un objet contact en renseignant son prénom, nom, entreprise,
  * fonction, numéros de téléphone(fixe et portable) et son email.
@@ -123,6 +122,9 @@ function Contact() {
     });
 }
 
+/**
+ * Transforme le contact en un objet exploitable par Json
+**/
 Contact.prototype.toJSON = function () {
     var phoneS = "";
     for (var i = 0; i < this.phone.length; i++) {
@@ -143,6 +145,9 @@ Contact.prototype.toJSON = function () {
     return obj;
 };
 
+/**
+ * Transforme le contact en un string contenant toutes les informations au format VCARD
+**/
 Contact.prototype.toVCardString = function () {
     var phoneS = "";
     for (var i = 0; i < this.phone.length; i++) {
@@ -173,6 +178,9 @@ Contact.prototype.toVCardString = function () {
     return vCardArray.join("\r\n");
 };
 
+/**
+ * Affichage des propriétés du contact
+**/
 Contact.prototype.toString = function () {
     var chalk = require("chalk");
     var phoneS = "";

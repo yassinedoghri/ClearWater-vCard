@@ -33,6 +33,9 @@ var ContactList = function () {
     });
 };
 
+/**
+ * Ajoute un contact dans la liste des contacts
+**/
 ContactList.prototype.addContact = function (contact) {
     var Contact = require("./Contact.js");
     // Tests if contact is an instance of the Contact Class
@@ -56,6 +59,9 @@ ContactList.prototype.addContact = function (contact) {
     }
 };
 
+/**
+ * Enlève un contact de la liste des contacts
+**/
 ContactList.prototype.removeContact = function (contact) {
     var newContacts = this.contacts.filter(function (c) {
         return c !== contact;
@@ -64,6 +70,9 @@ ContactList.prototype.removeContact = function (contact) {
     return this.contacts = newContacts;
 };
 
+/**
+ * Identifie les doublons entre contacts et renvoi le nom et le prénom des contacts faisant partie des doublons
+**/
 ContactList.prototype.duplicates = function () {
     // Identifier tous les doublons entre au moins deux contacts
     if (this.contactNumber > 1) {
@@ -92,6 +101,9 @@ ContactList.prototype.duplicates = function () {
     }
 };
 
+/**
+ * Identifie les conflits entre les profils de contacts et renvoi une liste contenant tous les conflits
+**/
 ContactList.prototype.conflicts = function () {
     if (this.similarContacts) {
         var conflicts = {};
@@ -130,6 +142,9 @@ ContactList.prototype.conflicts = function () {
     }
 };
 
+/**
+ * Identifie les conflits pour tous les contacts
+**/
 ContactList.prototype.displayConflicts = function () {
     var conflicts = this.conflicts();
     if (Object.size(conflicts) > 0) {
@@ -158,6 +173,9 @@ ContactList.prototype.displayConflicts = function () {
 	}
 };
 
+/**
+ * Fusionne 2 contacts et renvoi le contact créé
+**/
 ContactList.prototype.merge = function (choices) {
     var Contact = require("./Contact.js");
     var mergedContact = new Contact();
@@ -178,11 +196,14 @@ ContactList.prototype.merge = function (choices) {
             mergedContact[properties[i]] = this.contacts[0][properties[i]];
         }
     }
-    console.log("Contacts Fusionés !");
+    console.log("Contacts Fusionnés !");
     console.log(mergedContact.toString());
     return mergedContact;
 };
 
+/**
+ * 
+**/
 ContactList.prototype.export = function (file, format) {
     var fs = require("fs");
     if (!/.(csv|vcf)$/i.file) {
@@ -231,6 +252,9 @@ ContactList.prototype.export = function (file, format) {
     }
 };
 
+/**
+ * Transforme la liste de contact en string
+**/
 ContactList.prototype.toString = function () {
     var s = "";
     for (var i = 0; i < this.contacts.length; i++) {
@@ -239,10 +263,16 @@ ContactList.prototype.toString = function () {
     return s;
 };
 
+/**
+ * Renvoie la taille de Obj
+**/
 Object.size = function (obj) {
   return Object.keys(obj).length;
 };
 
+/**
+ * Teste si a n'existe qu'en 1 seul exemplaire ou non
+**/
 function uniq(a) {
     var seen = {};
     var out = [];
