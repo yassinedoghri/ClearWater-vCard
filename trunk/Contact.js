@@ -1,4 +1,4 @@
-s/**
+/**
  * Contact class
  * Définit un objet contact en renseignant son prénom, nom, entreprise,
  * fonction, numéros de téléphone(fixe et portable) et son email.
