@@ -1,5 +1,4 @@
 /**
- * Licence GNU GPLv2
  * vCardParser Class
  * Analyse des données sous la structure vCard
  * et permet de les reformater en JSON
@@ -21,13 +20,19 @@ function vCardParser(rawData) {
     this.jsonData = [];
 }
 
+/**
+ * Vérifie la conformité des fichiers vCard et les transforme en JSON
+**/
 vCardParser.prototype.parseToJSON = function () {
+    // Séparation du fichier vCard en plusieurs éléments vCard
     var regex = /END:VCARD?(\r\n)BEGIN:VCARD/;
     var dataArr = this.rawData.split(regex);
     var dataArr = dataArr.filter(function (val, idx) {
         return !val.match(/^\r\n$/);
     });
+    // Fin de la séparation
 
+    // Parcours de tous les éléments et ajout du début et de la fin s'ils n'y sont pas
     for (var i = 0; i < dataArr.length; i++) {
         if (!dataArr[i].startsWith("BEGIN:VCARD")) {
             dataArr[i] = "BEGIN:VCARD" + dataArr[i];
@@ -76,6 +81,9 @@ vCardParser.prototype.parseToJSON = function () {
     }
 };
 
+/**
+ * Sépare data selon separator et renvoi data qui est un array contenant les données de data séparées
+**/
 vCardParser.prototype.tokenize = function (data, separator) {
     data = data.split(separator);
     data = data.filter(function (val, idx) {
@@ -84,10 +92,16 @@ vCardParser.prototype.tokenize = function (data, separator) {
     return data;
 };
 
+/**
+ * Teste si le début de this est égal à prefix
+**/
 String.prototype.startsWith = function (prefix) {
     return this.slice(0, prefix.length) === prefix;
 };
 
+/**
+ * Teste si la fin de this est égale à suffix
+**/
 String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };

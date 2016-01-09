@@ -130,7 +130,7 @@ function askVCards() {
 							if(vcards.indexOf(testDouble[i]) == -1){
 								vcards.push(testDouble[i]);
 							}  
-						}/[^\s].*/
+						}
 					}
 					console.log(vcards);
 					//Fin du test
